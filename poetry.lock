@@ -193,6 +193,17 @@ Six = "*"
 
 [[package]]
 category = "main"
+description = "User session management for Flask"
+name = "flask-login"
+optional = false
+python-versions = "*"
+version = "0.5.0"
+
+[package.dependencies]
+Flask = "*"
+
+[[package]]
+category = "main"
 description = "SQLAlchemy database migrations for Flask applications using Alembic"
 name = "flask-migrate"
 optional = false
@@ -837,7 +848,7 @@ dev = ["pytest", "pytest-timeout", "coverage", "tox", "sphinx", "pallets-sphinx-
 watchdog = ["watchdog"]
 
 [metadata]
-content-hash = "aab857202a48d254919d8cfa76d55fba44bee390fef4c5b6c7c916d1c847ab7b"
+content-hash = "989a85913c5822fb522ea7ffbf1c0c21f59aec4aad443b08a7cc07fc4528d579"
 python-versions = "3.8"
 
 [metadata.files]
@@ -907,6 +918,10 @@ flask = [
 flask-cors = [
     {file = "Flask-Cors-3.0.8.tar.gz", hash = "sha256:72170423eb4612f0847318afff8c247b38bd516b7737adfc10d1c2cdbb382d16"},
     {file = "Flask_Cors-3.0.8-py2.py3-none-any.whl", hash = "sha256:f4d97201660e6bbcff2d89d082b5b6d31abee04b1b3003ee073a6fd25ad1d69a"},
+]
+flask-login = [
+    {file = "Flask-Login-0.5.0.tar.gz", hash = "sha256:6d33aef15b5bcead780acc339464aae8a6e28f13c90d8b1cf9de8b549d1c0b4b"},
+    {file = "Flask_Login-0.5.0-py2.py3-none-any.whl", hash = "sha256:7451b5001e17837ba58945aead261ba425fdf7b4f0448777e597ddab39f4fba0"},
 ]
 flask-migrate = [
     {file = "Flask-Migrate-2.5.3.tar.gz", hash = "sha256:a69d508c2e09d289f6e55a417b3b8c7bfe70e640f53d2d9deb0d056a384f37ee"},
