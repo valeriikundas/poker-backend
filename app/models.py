@@ -1,7 +1,14 @@
-from app import db
+from flask_login import UserMixin
+
+from app import db, login
 
 
-class User(db.Model):
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True, nullable=False)
     stack_size = db.Column(db.Integer, default=0)
