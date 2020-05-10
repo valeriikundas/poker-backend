@@ -623,6 +623,22 @@ checkqa-mypy = ["mypy (v0.761)"]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
+category = "dev"
+description = "A set of py.test fixtures to test Flask applications."
+name = "pytest-flask"
+optional = false
+python-versions = ">=3.5"
+version = "1.0.0"
+
+[package.dependencies]
+Flask = "*"
+Werkzeug = ">=0.7"
+pytest = ">=5.2"
+
+[package.extras]
+docs = ["sphinx", "sphinx-rtd-theme"]
+
+[[package]]
 category = "main"
 description = "Extensions to the standard Python datetime module"
 name = "python-dateutil"
@@ -848,7 +864,7 @@ dev = ["pytest", "pytest-timeout", "coverage", "tox", "sphinx", "pallets-sphinx-
 watchdog = ["watchdog"]
 
 [metadata]
-content-hash = "989a85913c5822fb522ea7ffbf1c0c21f59aec4aad443b08a7cc07fc4528d579"
+content-hash = "dbdf7ba20917540f6e62a71f27373e45def0051b7adfa35ef3775e1dc9e0b8ec"
 python-versions = "3.8"
 
 [metadata.files]
@@ -1162,6 +1178,10 @@ pyparsing = [
 pytest = [
     {file = "pytest-5.4.2-py3-none-any.whl", hash = "sha256:95c710d0a72d91c13fae35dce195633c929c3792f54125919847fdcdf7caa0d3"},
     {file = "pytest-5.4.2.tar.gz", hash = "sha256:eb2b5e935f6a019317e455b6da83dd8650ac9ffd2ee73a7b657a30873d67a698"},
+]
+pytest-flask = [
+    {file = "pytest-flask-1.0.0.tar.gz", hash = "sha256:4d5678a045c07317618d80223ea124e21e8acc89dae109542dd1fdf6783d96c2"},
+    {file = "pytest_flask-1.0.0-py3-none-any.whl", hash = "sha256:44948d3feab48c69e89b087129cc4db66bad9cb5aa472c08dfc798c69f4eac67"},
 ]
 python-dateutil = [
     {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},
