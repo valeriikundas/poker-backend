@@ -1,0 +1,6 @@
+{
+  "getting-started": "https://github.com/microsoft/pyright/blob/master/docs/getting-started.md",
+  "include": ["."],
+  "exclude": [".mypy_cache", "__pycache__"],
+  "reportMissingTypeStubs": "error"
+}
