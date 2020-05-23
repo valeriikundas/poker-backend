@@ -14,5 +14,5 @@ idb:
 install:
 	poetry install
 
-run: install 
+run: 
 	poetry run flask run --reload
