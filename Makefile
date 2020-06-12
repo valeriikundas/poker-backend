@@ -15,4 +15,4 @@ install:
 	poetry install
 
 run: 
-	poetry run flask run --reload
+	poetry run python backend.py

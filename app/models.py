@@ -24,26 +24,9 @@ class User(db.Model, UserMixin):
 
 class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), index=True, unique=True)  # todo:remove.not needed
+    name = db.Column(db.String(64), index=True, unique=True)
 
     players = db.relationship("User", backref="table")
 
     def __repr__(self):
         return f"Table({self.id}, {self.name}, {self.players})"
-
-    def as_json(self):
-        return json.dumps(
-            {
-                "id": self.name,
-                "button_position": "TODO:",
-                "blinds": {"small": 10, "big": 20, "ante": 2},
-                "players": [
-                    {
-                        "username": player.username,
-                        "stack_size": player.stack_size,
-                        "position": player.position,
-                    }
-                    for player in self.players
-                ],
-            }
-        )

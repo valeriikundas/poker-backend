@@ -1,31 +1,18 @@
 import abc
-import json
 import logging
 import os
-import sys
 import time
 
 import pika
 from pika.exceptions import AMQPConnectionError
 
 
-class MessageQueueInterface(abc.ABC):
-    @abc.abstractmethod
-    def __init__(self):
-        pass
-
-    def publish(self, key, message):
-        raise NotImplementedError
-
-    def subscribe(self, key, callback):
-        raise NotImplementedError
-
-
-class RabbitMQImpl(MessageQueueInterface):
+class RabbitMQImpl:
     def __init__(self):
         RABBITMQ_URL = os.environ.get(
-            "RABBITMQ_URL", "amqp://user:password@rabbitmq:5672/%2F"
+            "RABBITMQ_URL", "amqp://user:password@localhost:5672/%2F"
         )
+        logging.debug(RABBITMQ_URL)
 
         self.connection = None
         while not self.connection:
@@ -51,7 +38,8 @@ class RabbitMQImpl(MessageQueueInterface):
             body=message,
             properties=pika.BasicProperties(
                 delivery_mode=2, content_type="application/json"
-            ),  # make message persistent
+            )
+            # todo: make message persistent or no?
         )
         print(f" [x] Sent {message}")
 
