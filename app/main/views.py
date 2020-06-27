@@ -1,44 +1,54 @@
 import logging
 import random
-import threading
-import time
 
-import requests
 from flask import (
-    current_app,
-    escape,
     jsonify,
-    render_template,
     request,
-    session,
-    url_for,
 )
-from flask_cors import CORS, cross_origin
-from flask_socketio import SocketIO, emit
+from flask_cors import cross_origin
+from flask_socketio import emit
 
 from app import db, socketio
 from app.main import blp
-from app.main.sockets import start_games
 from app.models import Table, User
-
 # from .mq import RabbitMQImpl
 # from .sockets import GameplayNamespace
 
+
 STARTING_STACK_SIZE = 1000
+
 
 # table management endpoints
 
 
 @blp.route("/monitoring")
 def monitoring():
-    return {"ok": True}
+    from app.tasks import add_together
+    import pdb
+    pdb.set_trace()
+    result = add_together.delay(24, 33)
+    return {"ok": True, "sum": result.wait()}
 
 
 @blp.route("/restart")
 def restart():
     logging.info("sending a message to a client")
-    table_id = 1  # TODO
-    table = Table.query.get(table_id)
+
+    Table.query.delete()
+    User.query.delete()
+
+    table = Table()
+    players = [
+        User(name=name, stack_size=1000, position=i)
+        for i, name in enumerate(["aaa", "bbb", "ccc", "ddd", "eee"], 1)
+    ]
+    table.players = players
+
+    db.session.add(table)
+    db.session.add_all(players)
+
+    table_id = table.id
+
     players = [
         {
             "position": player.position,
@@ -47,6 +57,7 @@ def restart():
         }
         for player in table.players
     ]
+
     button_position = 1
     pot = 100
 
@@ -238,6 +249,5 @@ def request_action(table_id, username):
 def act(table_id: int, username: str):
     # rabb/itmq TODO:
     return "ok"
-
 
 # todo: send `new player joined table` in socket.

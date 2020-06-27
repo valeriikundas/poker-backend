@@ -1,14 +1,11 @@
-from app import create_app, db
+from app import db, create_app
+from app import socketio
 from app.models import User, Table
 
-from app import socketio
-
 # import threading
-from app.main.sockets import start_games
 
 
 app = create_app()
-
 
 # threading.Thread(target=start_games).start()
 # exit(0)
